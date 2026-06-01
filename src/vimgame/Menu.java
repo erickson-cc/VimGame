@@ -10,6 +10,8 @@ import java.util.Arrays;
 public class Menu extends VimModes {
 	private static int largura = 35;
 	private static int altura = 10;
+	private boolean selecionarFaseClicked = false;
+	public boolean isSelecionarFaseClicked() { return selecionarFaseClicked; }
 	public Menu(){
 		super("Menu Principal");
 		// Centraliza a janela e remove a sombra
@@ -26,8 +28,8 @@ public class Menu extends VimModes {
 
 		// Opções do Menu
 		mainPanel.addComponent(new Button("Selecionar Fase", () -> {
-			// Lógica para começar o jogo
-			// Pensar num nome melhor.
+			this.selecionarFaseClicked = true;
+			this.close(); // Fecha o menu para abrir a próxima tela
 		}));
 
 		mainPanel.addComponent(new Button("Desenvolver Fase", () -> {

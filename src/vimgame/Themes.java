@@ -15,6 +15,17 @@ public class Themes {
 	*/
 	public static void applyTheme(Window window) {
 		// SimpleTheme define o par de cores (texto, fundo)
+		//window.setTheme(new SimpleTheme(FOREGROUND, BACKGROUND));
+
+		SimpleTheme theme = new SimpleTheme(FOREGROUND, BACKGROUND);
+		// FORÇA O DESTAQUE VISUAL PARA ITENS SELECIONADOS/FOCADOS
+		// Fundo Branco e Texto Preto para dar contraste
+		theme.getDefaultDefinition().setActive(TextColor.ANSI.BLACK, TextColor.ANSI.WHITE);
+		theme.getDefaultDefinition().setSelected(TextColor.ANSI.BLACK, TextColor.ANSI.WHITE);
+
+		window.setTheme(theme);
+	}
+	public static void loginTheme(Window window) {
 		window.setTheme(new SimpleTheme(FOREGROUND, BACKGROUND));
 	}
 }

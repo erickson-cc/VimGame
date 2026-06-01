@@ -33,21 +33,23 @@ public abstract class VimModes extends BasicWindow {
 
         if (currentMode == Mode.NORMAL) {
             if (key.getCharacter() != null) {
-		    switch (key.getCharacter()) {
-    case 'i': case 'a':
-        switchMode(Mode.INSERT);
-        return true;
-        
-    case 'j': // Baixo
-    case 'l': // Direita
-        // Simula a tecla TAB para avançar o foco nativamente
-        return super.handleInput(new KeyStroke(KeyType.Tab));
-        
-    case 'k': // Cima
-    case 'h': // Esquerda
-        // Simula a tecla SHIFT+TAB (ReverseTab) para voltar o foco nativamente
-        return super.handleInput(new KeyStroke(KeyType.ReverseTab));
-}
+		switch (key.getCharacter()) {
+			case 'i': case 'a':
+			switchMode(Mode.INSERT);
+			return true;
+
+			case 'j': // Simula Seta para Baixo
+			return super.handleInput(new KeyStroke(KeyType.ArrowDown));
+
+			case 'k': // Simula Seta para Cima
+			return super.handleInput(new KeyStroke(KeyType.ArrowUp));
+
+			case 'h': // Simula Seta para Esquerda
+			return super.handleInput(new KeyStroke(KeyType.ArrowLeft));
+
+			case 'l': // Simula Seta para Direita
+			return super.handleInput(new KeyStroke(KeyType.ArrowRight));
+		}
             }
         }
         return super.handleInput(key);

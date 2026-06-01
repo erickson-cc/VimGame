@@ -21,7 +21,7 @@ public class Login extends BasicWindow {
 
 		//TextColor cinzaEscuro = TextColor.Factory.fromString("#252525");
 		//SimpleTheme loginTheme = new SimpleTheme(TextColor.ANSI.WHITE, cinzaEscuro);
-		Themes.applyTheme(this);
+		Themes.loginTheme(this);
 
 
 		// Configurações da Janela

@@ -32,15 +32,42 @@ public class Main {
 			gui.addWindowAndWait(screenLogin);
 
 			if (screenLogin.isLogged()){
-				//System.out.println("DEBUG: Login realizado com sucesso!");
-				Menu screenMenu = new Menu();
-				gui.addWindowAndWait(screenMenu);
-				//Se o jogador  clicou em iniciar jogo e o menu fechou
-				//aqui ficaria o loop da screen
-			}
-			else {
-				//System.out.println("DEBUG: Falha no login");
+				boolean rodando = true;
+				while (rodando) {
+					Menu screenMenu = new Menu();
+					gui.addWindowAndWait(screenMenu);
+					if (screenMenu.isSelecionarFaseClicked()){
+						SelecionarFase telaFases = new SelecionarFase();
+						gui.addWindowAndWait(telaFases);
 
+						String caminhoFase = telaFases.getFaseEscolhida();
+
+						if (caminhoFase != null) {
+							// Pausa lanterna
+							screen.stopScreen();
+							long tempoInicio = System.currentTimeMillis();
+							try{
+								// Chama o VIM nativo, precisa estar instalado no computador
+								ProcessBuilder pb = new ProcessBuilder("vim", caminhoFase);
+								pb.inheritIO(); // Fundamental: Conecta o Vim ao terminal
+								Process processoVim = pb.start();
+								processoVim.waitFor(); // O Java congela aqui até o usuário sair do Vim
+							} catch (InterruptedException e ){
+								e.printStackTrace();
+							}
+							long tempoFim = System.currentTimeMillis();
+							// Criar uma classe de desempenho da fase 'conclusao.tempo()'
+							long segundosGastos = (tempoFim - tempoInicio) / 1000;
+
+							screen.startScreen();// Volta ao lanterna
+									     //
+							MessageDialog.showMessageDialog(gui, "Fase Concluída!", "Tempo gasto: " + segundosGastos + " segundos.", MessageDialogButton.OK);
+							}
+					}
+					else{
+						rodando = false;
+					}
+				}
 			}
 
 
@@ -58,6 +85,5 @@ public class Main {
 				}
 		    }
 		}
-
 	}
 }
