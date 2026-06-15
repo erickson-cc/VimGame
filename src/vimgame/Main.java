@@ -21,13 +21,9 @@ public class Main {
 			screen = terminalFactory.createScreen();
 			screen.startScreen();
 			
-			//WindowBasedTextGUI gui = new MultiWindowTextGUI(screen);
 			MultiWindowTextGUI gui = new MultiWindowTextGUI(screen);
 			
-			//gui.setWindowPostRenderer(new EmptyWindowPostRenderer()); // remove o estilo padrão do lanterna
-			//gui.setWindowPostRenderer((t, wm, w) -> { /* Sem operações */ });
-//Tela de login
-			
+			//Tela de login
 			Login screenLogin = new Login();
 			gui.addWindowAndWait(screenLogin);
 

@@ -14,6 +14,7 @@ public class SelecionarFase extends VimModes {
         this.setFixedSize(new TerminalSize(40, 15));
 
         Panel mainPanel = new Panel();
+	mainPanel.setTheme(Themes.getInteractiveTheme());
         mainPanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
         mainPanel.addComponent(new Label("Selecione uma fase:"));
         mainPanel.addComponent(new EmptySpace(new TerminalSize(0, 1)));
@@ -36,7 +37,7 @@ public class SelecionarFase extends VimModes {
                 }
             }
         } else {
-            list.addItem("Nenhuma fase encontrada!", () -> {});
+            list.addItem("Nenhuma fase encontrada", () -> {});
         }
 
         mainPanel.addComponent(list);

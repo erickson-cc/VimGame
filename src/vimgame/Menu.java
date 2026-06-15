@@ -21,6 +21,7 @@ public class Menu extends VimModes {
 		//Themes.applyTheme(this);
 
 		Panel mainPanel = new Panel();
+		mainPanel.setTheme(Themes.getInteractiveTheme());
 		mainPanel.setLayoutManager(new LinearLayout(Direction.VERTICAL));
 
 		mainPanel.addComponent(new Label("Usuário: "+ "admin"));//substituir admin por variável user
